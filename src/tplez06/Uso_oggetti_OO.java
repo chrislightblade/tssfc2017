@@ -17,7 +17,7 @@ public class Uso_oggetti_OO {
     public static void main(String[] args) {
         // TODO code application logic here
         
-        Esaminando alunno1 = new Esaminando("Mario", "Rossi");
+        Esaminando_old alunno1 = new Esaminando_old("Mario", "Rossi");
         //alunno1.cognome = "Rossi";
         //alunno1.nome = "Mario";
         alunno1.impostaVoto(81);
@@ -25,7 +25,7 @@ public class Uso_oggetti_OO {
         String output = alunno1.cometiChiami() + " " + alunno1.cognome + " voto:" + alunno1.leggiVoto();
         System.out.println(output);
         
-        Esaminando alunno2 = new Esaminando("Giuseppe", "Verdi");
+        Esaminando_old alunno2 = new Esaminando_old("Giuseppe", "Verdi");
         //alunno2.cognome = "Verdi";
         //alunno2.nome = "Giuseppe";
         alunno2.impostaVoto(99);

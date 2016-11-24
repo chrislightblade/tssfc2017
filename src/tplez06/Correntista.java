@@ -11,45 +11,48 @@ package tplez06;
  */
 public class Correntista {
 
-    private String Nome_Cognome;
-    //String Cognome;
-    private int Anno;//anno di nascita
-    private double Conto = 0;
-    int min = -5000, max = 10000;//per fare un modello unico per prelievi e versamenti
+    private String nominativo;
+    private int annonascita;
+    private double conto=0;
+    private int min, max;
 
-    public Correntista(String nominativo, int Anno) {
-        
-        if(Anno > 1900 && Anno < 2016)        
-            this.Anno = Anno;
-        else
-            this.Anno = 1960;
-        
-        if(Nome_Cognome.length() > 50)
-            this.Nome_Cognome = nominativo.substring(0, 50);
-        else
-            this.Nome_Cognome = nominativo;
-        //this.Conto = Conto;
-        
+    public Correntista(String nominativo, int annonascita) {
+        if (annonascita > 1900 && annonascita < 2016) {
+            this.annonascita = annonascita;
+        } else {
+            this.annonascita = 1980;
+        }
+
+        if (nominativo.length() > 50) {
+            this.nominativo = nominativo.substring(0, 50);
+        } else {
+            this.nominativo = nominativo;
+        }
+        min = -5000;
+        max = 10000;
 
     }
 
-    public double getConto(){        
-        return Conto;
-    }
-    
-    void versa_nel_contro(double versamento) {
-        
-            Conto += versamento;
-            
-        //return Conto;
+    public boolean setConto(double valore) {
+        //massimali min max
+        if (valore >= min && valore <= max) {
+            conto = conto + valore;
+            return true;
+
+        } else {
+            return false;
+        }
     }
 
-    void preleva_da_conto(double versamento) {
-        Conto -= versamento;
-        //return Conto;
-    
+    public double getConto() {
+        return conto;
     }
     
-    
-
+    public String getInfo(){
+    String ris="DATI CORRENTISTA------\n";
+    ris+="nominativo:"+ nominativo +"\n";
+    ris+="anno nascita:"+ annonascita +"\n";
+    ris+="conto:"+ conto +"\n";
+    return ris;
+    }
 }
