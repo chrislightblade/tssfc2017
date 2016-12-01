@@ -11,11 +11,11 @@ import javax.swing.JOptionPane;
  *
  * @author tss
  */
-public class giococarte {
+public class Giococarte_old {
     
-    static Mazzo miomazzo;
+    static Mazzo_old miomazzo;
     static int poscarta = 0;
-    static Carta cartacorrente;
+    static Carta_old cartacorrente;
     static double punteggiocorrente;
     
 
@@ -25,7 +25,7 @@ public class giococarte {
     public static void main(String[] args) {
         // TODO code application logic here
         
-        miomazzo = new Mazzo(40);
+        miomazzo = new Mazzo_old(40);
         miomazzo.mischiaMazzo();
         String nomecarta = miomazzo.getCartaIndex(0).getNome() + "\n";
         for(int i = 0; i < 40; i++){
@@ -33,7 +33,7 @@ public class giococarte {
             
         }
         
-        Player p1 = new Player("Luca");
+        Player_old p1 = new Player_old("Luca");
         boolean avanti = true;
         while(avanti == true){
         //prendo la prima carta e inizio
@@ -54,7 +54,7 @@ public class giococarte {
         }
         }
         
-        Player p2 = new Player("bLuca");
+        Player_old p2 = new Player_old("bLuca");
         avanti = true;
         while(avanti == true){
         //prendo la prima carta e inizio

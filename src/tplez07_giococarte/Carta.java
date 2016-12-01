@@ -10,28 +10,28 @@ package tplez07_giococarte;
  * @author tss
  */
 public class Carta {
+    private int valore; // numero della carta ad esempio un 7 
+    private int seme; // seme della carta come intero cuori 4 quadri 3 etc
+    private String nome; // composto in fase di creazione ad esempio 3 di picche
+    
+     public Carta (int valore,int seme,String nome){
+     this.valore=valore;
+     this.seme=seme;
+     this.nome=nome;
+     }
 
-    private int valore;// esempio 7
-    private int seme;// esempio cuori
-    private String nome;//composto in fase di creazione = esempio 7 di picche
-
-    public Carta(int valore, int seme, String nome) {
-        this.valore = valore;
-        this.seme = seme;
-        this.nome = nome;
-    }
-
-    public String getNome() {
-        return nome;
+    public int getValore() {
+        return valore;
     }
 
     public int getSeme() {
         return seme;
     }
 
-    public int getValore() {
-        return valore;
+    public String getNome() {
+        return nome;
     }
-
+     
+     
     
 }
