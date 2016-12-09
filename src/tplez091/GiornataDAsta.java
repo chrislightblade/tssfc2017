@@ -5,6 +5,8 @@
  */
 package tplez091;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author tss
@@ -24,11 +26,30 @@ public class GiornataDAsta {
         casa_asta.setPersone(p2);
         casa_asta.setPersone(p3);       
 
-        casa_asta.scegliAsta();
-
-        casa_asta.chiudiAsta();
+        scegliAsta(casa_asta);       
         
         casa_asta.stampaStorico();
 
+    }
+    
+    public static void scegliAsta(Casa_aste casa_asta) {
+        int input = Integer.parseInt(JOptionPane.showInputDialog("Quale tipo di asta desideri applicare?\n1.Asta a offerta singola nascosta\n2.Asta libera."));
+        switch (input) {
+            case 2:
+                boolean control = false;
+                while (control == false) {
+                    control = casa_asta.faiOfferta();
+                }
+                casa_asta.chiudiAsta();
+                break;
+
+            case 1:
+                casa_asta.offertaChiusa();
+                break;
+                
+            case 3: 
+                casa_asta.astaUnaAllaVolta();                
+                break;
+        }
     }
 }

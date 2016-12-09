@@ -19,7 +19,7 @@ public class TavolateAste {
         oggettiAllAsta.add(oggetto);
     }
 
-    public int getSizeOggettiAllAsta() {
+    public int getSizeOggettiAllAsta() {//oggettiAllAsta.getSizeOggettiAllAsta()
         return oggettiAllAsta.size();
     }
 
@@ -37,5 +37,21 @@ public class TavolateAste {
     
     public String getReportOfferte(int index){//oggettiAllAsta.getReportOfferte(i)        
         return oggettiAllAsta.get(index).getOfferte();
-    } 
+    }
+    
+    public Oggetto getOggetto(int index){
+        return oggettiAllAsta.get(index);
+    }
+    
+    public void setMaggioreOfferente(int index, String maggioreOfferente) {//oggettiAllAsta.setMaggioreOfferente(int index, String maggioreOfferente)
+        oggettiAllAsta.get(index).setMaggioreOfferente(maggioreOfferente);
+    }
+    
+    public void setOfferta(int index, int offerta) {//oggettiAllAsta.setOfferta(int index, int offerta)
+        oggettiAllAsta.get(index).setOfferta(offerta);
+    }
+    
+    public void setOfferte(int index, String nome, int offerta) {//oggettiAllAsta.setOfferte(int index, String nome, int offerta)
+        oggettiAllAsta.get(index).setOfferte(nome, offerta);
+    }
 }

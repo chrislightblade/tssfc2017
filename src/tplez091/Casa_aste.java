@@ -14,7 +14,6 @@ import javax.swing.JOptionPane;
  */
 public class Casa_aste {
 
-    
     private ArrayList<String> articoli;
     private ArrayList<Persona> persone;
     private TavolateAste oggettiAllAsta;
@@ -160,9 +159,9 @@ public class Casa_aste {
             String report = "L'offerta non è valida, più bassa dell'ultimo offerente, cioè " + oggettiAllAsta.getOfferta(input2 - 1);
             if (input3 > oggettiAllAsta.getOfferta(input2 - 1)) {
                 report = "Offerta avvenuta con successo";
-                oggettiAllAsta.get(input2 - 1).setMaggioreOfferente(persone.get(input).getNome());
-                oggettiAllAsta.get(input2 - 1).setOfferta(input3);
-                oggettiAllAsta.get(input2 - 1).setOfferte(persone.get(input).getNome(), input3);
+                oggettiAllAsta.setMaggioreOfferente(input2 - 1, persone.get(input).getNome());
+                oggettiAllAsta.setOfferta(input2 - 1, input3);
+                oggettiAllAsta.setOfferte(input2 - 1, persone.get(input).getNome(), input3);
                 JOptionPane.showConfirmDialog(null, report);
             } else {
                 JOptionPane.showConfirmDialog(null, report);
@@ -173,7 +172,7 @@ public class Casa_aste {
 
     public void offertaChiusa() {
         for (int i = 0; i < oggettiAllAsta.getSizeOggettiAllAsta(); i++) {
-            oggettiAllAsta.get(i).setOfferta(0);
+            oggettiAllAsta.setOfferta(i, 0);
         }
         for (int i = 0; i < oggettiAllAsta.getSizeOggettiAllAsta(); i++) {
             for (int j = 1; j < persone.size(); j++) {
@@ -183,14 +182,83 @@ public class Casa_aste {
                 input = Integer.parseInt(input2); 
                 }*/
                 if (input > 0) {
-                    oggettiAllAsta.get(i).setOfferte(persone.get(j).getNome(), input);
+                    oggettiAllAsta.setOfferte(i, persone.get(j).getNome(), input);
                     if (input > oggettiAllAsta.getOfferta(i)) {
-                        oggettiAllAsta.get(i).setOfferta(input);
-                        oggettiAllAsta.get(i).setMaggioreOfferente(persone.get(j).getNome());
+                        oggettiAllAsta.setOfferta(i, input);
+                        oggettiAllAsta.setMaggioreOfferente(i, persone.get(j).getNome());
                     }
                 }
             }
         }
+    }
+
+    public void astaUnaAllaVolta() {
+        int controllo = 0;
+        String report = "", input2 = "";
+        int input = 0;
+        while (controllo < oggettiAllAsta.getSizeOggettiAllAsta()) {
+            if (oggettiAllAsta.getMaggioreOfferente(controllo).equalsIgnoreCase("nessuno")) {
+                report = "E' in vendita l'oggetto '" + oggettiAllAsta.getNomeOggetto(controllo) + "' al prezzo di " + oggettiAllAsta.getOfferta(controllo) + "\n";
+            } else {
+                report = "E' in vendita l'oggetto '" + oggettiAllAsta.getNomeOggetto(controllo) + "' al prezzo di " + oggettiAllAsta.getOfferta(controllo) + "\nIl miglior offerente è di " + oggettiAllAsta.getMaggioreOfferente(controllo) + "\n";
+            }
+                       
+            boolean verifica = false;
+            while (verifica == false) {
+                input = 0;
+                input2 = JOptionPane.showInputDialog(report + getPersone() + "\nQuale persona desidera fare un'offerta?\nAltrimenti digitare zero o premere invio");
+
+                try {
+                    if (input2.equalsIgnoreCase("") || input2.equalsIgnoreCase("0")) {
+                        verifica = true;
+                    } else {
+                        input = Integer.parseInt(input2);
+                        if (input < persone.size()) {
+                            verifica = true;
+                        } else {
+                            JOptionPane.showMessageDialog(null, "non hai inserito dei valori validi");
+                        }
+                    }
+                } catch (Exception error) {
+                    JOptionPane.showMessageDialog(null, "non hai inserito dei valori validi");
+                }
+            }//fine while controllo inserimento  
+            
+            if(input == 0){
+                report = "Siccome a nessuno interessa, passiamo all'oggetto successivo";
+                JOptionPane.showMessageDialog(null, report);
+                controllo++;
+            } else {
+
+            int input3 = 0;
+            verifica = false;
+            while (verifica == false) {
+                input3 = 0;
+                input2 = JOptionPane.showInputDialog(persone.get(input).getNome() + " quanto desidera offrire per " + oggettiAllAsta.getNomeOggetto(controllo));
+
+                try {
+                    if (!input2.equalsIgnoreCase("")) {
+                        input3 = Integer.parseInt(input2);
+                        verifica = true;
+                    }
+                } catch (Exception error) {
+                    JOptionPane.showMessageDialog(null, "non hai inserito dei valori validi");
+                }
+            }//fine while controllo inserimento
+
+            report = "L'offerta non è valida, più bassa dell'ultimo offerente, cioè " + oggettiAllAsta.getOfferta(controllo);
+            if (input3 > oggettiAllAsta.getOfferta(controllo)) {
+                report = "Offerta avvenuta con successo";
+                oggettiAllAsta.setMaggioreOfferente(controllo, persone.get(input).getNome());
+                oggettiAllAsta.setOfferta(controllo, input3);
+                oggettiAllAsta.setOfferte(controllo, persone.get(input).getNome(), input3);
+                JOptionPane.showConfirmDialog(null, report);
+            } else {
+                JOptionPane.showConfirmDialog(null, report);
+            }
+            }
+        }
+        chiudiAsta();
     }
 
     public boolean azioniBattitore() {
@@ -214,30 +282,19 @@ public class Casa_aste {
     public void chiudiAsta() {
         String report = "Aste Chiuse! Resoconto giornata:\n";
         for (int i = 0; i < oggettiAllAsta.getSizeOggettiAllAsta(); i++) {
-            if (oggettiAllAsta.getMaggioreOfferente(i).equalsIgnoreCase("nessuno") == false) {
-                report += oggettiAllAsta.getNomeOggetto(i) + " valore d'asta: " + oggettiAllAsta.getOfferta(i) + "\nOfferente migliore: " + oggettiAllAsta.getMaggioreOfferente(i) + "\n";
-                report += "CONGRATULAZIONI!\n";
+            for (int j = 0; j < persone.size(); j++) {
+
+                if (oggettiAllAsta.getMaggioreOfferente(i).equalsIgnoreCase(persone.get(j).getNome())) {
+                    report += oggettiAllAsta.getNomeOggetto(i) + " valore d'asta: " + oggettiAllAsta.getOfferta(i) + "\nOfferente migliore: " + oggettiAllAsta.getMaggioreOfferente(i) + "\n";
+                    report += "CONGRATULAZIONI!\n";
+                    Oggetto oggetto = oggettiAllAsta.getOggetto(i);
+                    persone.get(j).addOggetto(oggetto);
+                }
             }
         }
         JOptionPane.showConfirmDialog(null, report);
     }
-
-    public void scegliAsta() {
-        int input = Integer.parseInt(JOptionPane.showInputDialog("Quale tipo di asta desideri applicare?\n1.Asta a offerta singola nascosta\n2.Asta libera."));
-        switch (input) {
-            case 2:
-                boolean control = false;
-                while (control == false) {
-                    control = faiOfferta();
-                }
-                break;
-
-            case 1:
-                offertaChiusa();
-                break;
-        }
-    }
-
+    
     public void stampaStorico() {
 
         boolean control = false;

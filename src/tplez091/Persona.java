@@ -5,6 +5,8 @@
  */
 package tplez091;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author tss
@@ -14,8 +16,9 @@ public class Persona {
     private String nome;
     private int numero;
     private static int numerototale = 0;
+    private ArrayList<Oggetto> aggiudicati;
     /**
-     * aggiungere un Arraylist in cui si inseriscono gli oggetti vinti all'asta, usando un terzo tipo di asta = asta, vinci, nuova asta, vinci, ecc...
+     * 
      * aggiungere la variabilwe portafoglio inizializzata a un tot compreso tra 100 e 5000, e dopo una puntata verificare se la persona può realmente puntare
      *  
      */
@@ -39,6 +42,7 @@ public class Persona {
         this.nome = nome;
         this.numero = numerototale;
         numerototale++;
+        aggiudicati = new ArrayList<Oggetto>();
     }
 
     public int getNumero() {
@@ -47,6 +51,10 @@ public class Persona {
 
     public void setNumero(int numero) {
         this.numero = numero;
+    }
+    
+    public void addOggetto(Oggetto oggetto){
+        aggiudicati.add(oggetto);
     }
 
 }
