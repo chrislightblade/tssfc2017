@@ -33,7 +33,7 @@ public class GiornataDAsta {
     }
     
     public static void scegliAsta(Casa_aste casa_asta) {
-        int input = Integer.parseInt(JOptionPane.showInputDialog("Quale tipo di asta desideri applicare?\n1.Asta a offerta singola nascosta\n2.Asta libera."));
+        int input = Integer.parseInt(JOptionPane.showInputDialog("Quale tipo di asta desideri applicare?\n1.Asta a offerta singola nascosta\n2.Asta libera.\n3.Asta un oggetto alla volta."));
         switch (input) {
             case 2:
                 boolean control = false;

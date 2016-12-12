@@ -35,7 +35,7 @@ public class Casa_aste {
         }
     }
 
-    public String getPersone() {
+    public String getPersone() {//ottengo una stringa con le persone iscritte all'asta
         String report = "Le seguenti persone sono iscritte all'asta\n";
         for (int i = 0; i < persone.size(); i++) {
             report += persone.get(i).getNumero() + "° " + persone.get(i).getNome() + "\n";
@@ -43,7 +43,7 @@ public class Casa_aste {
         return report;
     }
 
-    public void setPersone(Persona personaNuova) {
+    public void setPersone(Persona personaNuova) {//funzione per aggiungere una persona alle aste passando un oggetto persona
         this.persone.add(personaNuova);
     }
 
@@ -55,7 +55,7 @@ public class Casa_aste {
         return report;
     }
 
-    public String getNomeOggettiAllAsta() {
+    public String getNomeOggettiAllAsta() {//in output l'elenco degli oggetti all'asta
         String report = "I seguenti oggetti sono all'asta:\n";
         for (int i = 0; i < oggettiAllAsta.getSizeOggettiAllAsta(); i++) {
             report += (i + 1) + "°: " + oggettiAllAsta.getNomeOggetto(i) + "\n";
@@ -63,7 +63,7 @@ public class Casa_aste {
         return report;
     }
 
-    public void setOggettiAllAsta() {
+    public void setOggettiAllAsta() {//stampa in output gli oggetti all'asta e consente di inserirne di nuovi
         String report = "I seguenti oggetti sono all'asta:\n";
         for (int i = 0; i < oggettiAllAsta.getSizeOggettiAllAsta(); i++) {
             report += oggettiAllAsta.getNomeOggetto(i) + " valore d'asta: " + oggettiAllAsta.getMaggioreOfferente(i) + "\n";
@@ -91,8 +91,8 @@ public class Casa_aste {
         oggettiAllAsta.addOggetto(oggetto);
     }
 
-    public boolean faiOfferta() {
-        int input = 0;
+    public boolean faiOfferta() {//asta in cui tutti gli oggetti sono espostii e la singola persona può effettuare una offerta 
+        int input = 0;           //il battitore ha diversi poteri, tra cui aggiungere oggetti, aggiungere persone, chiudere l'asta 
         boolean verifica = false;
         while (verifica == false) {
             input = 0;
@@ -156,7 +156,7 @@ public class Casa_aste {
                 }
             }//fine while controllo inserimento
 
-            String report = "L'offerta non è valida, più bassa dell'ultimo offerente, cioè " + oggettiAllAsta.getOfferta(input2 - 1);
+            String report = "L'offerta non è valida, più bassa dell'ultimo offerente, cioè " + oggettiAllAsta.getOfferta(input2 - 1);//accetta nello storico l'offerta solo nel caso in cui sia superiore al valore attuale dell'oggetto
             if (input3 > oggettiAllAsta.getOfferta(input2 - 1)) {
                 report = "Offerta avvenuta con successo";
                 oggettiAllAsta.setMaggioreOfferente(input2 - 1, persone.get(input).getNome());
@@ -170,7 +170,7 @@ public class Casa_aste {
         return false;
     }
 
-    public void offertaChiusa() {
+    public void offertaChiusa() {//asta in cui l'offerta è nascosta e vince quella più alta
         for (int i = 0; i < oggettiAllAsta.getSizeOggettiAllAsta(); i++) {
             oggettiAllAsta.setOfferta(i, 0);
         }
@@ -192,7 +192,7 @@ public class Casa_aste {
         }
     }
 
-    public void astaUnaAllaVolta() {
+    public void astaUnaAllaVolta() {//un singolo oggetto all'asta alla volta, in cui chiunque può fare una offerta
         int controllo = 0;
         String report = "", input2 = "";
         int input = 0;
@@ -202,14 +202,14 @@ public class Casa_aste {
             } else {
                 report = "E' in vendita l'oggetto '" + oggettiAllAsta.getNomeOggetto(controllo) + "' al prezzo di " + oggettiAllAsta.getOfferta(controllo) + "\nIl miglior offerente è di " + oggettiAllAsta.getMaggioreOfferente(controllo) + "\n";
             }
-                       
+
             boolean verifica = false;
             while (verifica == false) {
                 input = 0;
                 input2 = JOptionPane.showInputDialog(report + getPersone() + "\nQuale persona desidera fare un'offerta?\nAltrimenti digitare zero o premere invio");
 
                 try {
-                    if (input2.equalsIgnoreCase("") || input2.equalsIgnoreCase("0")) {
+                    if (input2.equalsIgnoreCase("") || input2.equalsIgnoreCase("0")) {//lo zero passa al battitore che passa all'oggetto successivo
                         verifica = true;
                     } else {
                         input = Integer.parseInt(input2);
@@ -223,46 +223,47 @@ public class Casa_aste {
                     JOptionPane.showMessageDialog(null, "non hai inserito dei valori validi");
                 }
             }//fine while controllo inserimento  
-            
-            if(input == 0){
+
+            if (input == 0) {
                 report = "Siccome a nessuno interessa, passiamo all'oggetto successivo";
                 JOptionPane.showMessageDialog(null, report);
                 controllo++;
             } else {
 
-            int input3 = 0;
-            verifica = false;
-            while (verifica == false) {
-                input3 = 0;
-                input2 = JOptionPane.showInputDialog(persone.get(input).getNome() + " quanto desidera offrire per " + oggettiAllAsta.getNomeOggetto(controllo));
+                int input3 = 0;
+                verifica = false;
+                while (verifica == false) {
+                    input3 = 0;
+                    input2 = JOptionPane.showInputDialog(persone.get(input).getNome() + " quanto desidera offrire per " + oggettiAllAsta.getNomeOggetto(controllo));
 
-                try {
-                    if (!input2.equalsIgnoreCase("")) {
-                        input3 = Integer.parseInt(input2);
-                        verifica = true;
+                    try {
+                        if (!input2.equalsIgnoreCase("")) {
+                            input3 = Integer.parseInt(input2);
+                            verifica = true;
+                        }
+                    } catch (Exception error) {
+                        JOptionPane.showMessageDialog(null, "non hai inserito dei valori validi");
                     }
-                } catch (Exception error) {
-                    JOptionPane.showMessageDialog(null, "non hai inserito dei valori validi");
-                }
-            }//fine while controllo inserimento
+                }//fine while controllo inserimento
 
-            report = "L'offerta non è valida, più bassa dell'ultimo offerente, cioè " + oggettiAllAsta.getOfferta(controllo);
-            if (input3 > oggettiAllAsta.getOfferta(controllo)) {
-                report = "Offerta avvenuta con successo";
-                oggettiAllAsta.setMaggioreOfferente(controllo, persone.get(input).getNome());
-                oggettiAllAsta.setOfferta(controllo, input3);
-                oggettiAllAsta.setOfferte(controllo, persone.get(input).getNome(), input3);
-                JOptionPane.showConfirmDialog(null, report);
-            } else {
-                JOptionPane.showConfirmDialog(null, report);
-            }
+                report = "L'offerta non è valida, più bassa dell'ultimo offerente, cioè " + oggettiAllAsta.getOfferta(controllo);
+                if (input3 > oggettiAllAsta.getOfferta(controllo)) {
+                    report = "Offerta avvenuta con successo";
+                    oggettiAllAsta.setMaggioreOfferente(controllo, persone.get(input).getNome());
+                    oggettiAllAsta.setOfferta(controllo, input3);
+                    oggettiAllAsta.setOfferte(controllo, persone.get(input).getNome(), input3);
+                    JOptionPane.showConfirmDialog(null, report);
+                } else {
+                    JOptionPane.showConfirmDialog(null, report);
+                }
             }
         }
         chiudiAsta();
     }
 
     public boolean azioniBattitore() {
-        int input = Integer.parseInt(JOptionPane.showInputDialog("Cosa desideri fare?\n1.Inserisci un nuovo oggetto all'asta.\n2.Chiudi l'asta.\n3.Inserisci un nuovo giocatore"));
+        int input = Integer.parseInt(JOptionPane.showInputDialog("Cosa desideri fare?\n1.Inserisci un nuovo oggetto all'asta.\n2.Chiudi l'asta.\n3.Inserisci un nuovo giocatore"
+                + "3.Aggiungi un tizio nuovo.\n4.VIsualizza storico di un oggetto"));
         switch (input) {
             case 1:
                 setOggettiAllAsta();
@@ -275,6 +276,10 @@ public class Casa_aste {
                 String input2 = JOptionPane.showInputDialog(getPersone() + "\nQuale Giocatore desideri inserire?");
                 Persona p = new Persona(input2);
                 persone.add(p);
+                return false;
+
+            case 4:
+                stampaStorico();
         }
         return false;
     }
@@ -294,7 +299,7 @@ public class Casa_aste {
         }
         JOptionPane.showConfirmDialog(null, report);
     }
-    
+
     public void stampaStorico() {
 
         boolean control = false;
