@@ -32,6 +32,7 @@ public class GiornataDAsta {
 
     }
     
+    //metodo per scegliere con quale metodo condurre l'asta
     public static void scegliAsta(Casa_aste casa_asta) {
         int input = Integer.parseInt(JOptionPane.showInputDialog("Quale tipo di asta desideri applicare?\n1.Asta a offerta singola nascosta\n2.Asta libera.\n3.Asta un oggetto alla volta."));
         switch (input) {

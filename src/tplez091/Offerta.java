@@ -7,6 +7,8 @@ package tplez091;
 
 /**
  *
+ * questa classe contiene nome di chi fa l'oferta e ammontare, da salvare poi in un ArraayList specifico
+ * 
  * @author tss
  */
 public class Offerta {

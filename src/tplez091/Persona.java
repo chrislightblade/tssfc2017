@@ -38,6 +38,8 @@ public class Persona {
     public void setCognome(String cognome) {
         this.cognome = cognome;
     }*/
+    
+    //costruttore, ch ecotiene uno static per contare quanti sono i tizi iscritti all'asta
     public Persona(String nome) {
         this.nome = nome;
         this.numero = numerototale;

@@ -50,6 +50,7 @@ public class Oggetto {
         this.offerte = new ArrayList<Offerta>();
     }
 
+    //metodo che stampa le offerte fatte per il singolo oggetto interessato
     public String getOfferte() {
         String report = "Ecco lo storico delle offerte valide fatte all'oggetto:\n";
         for(int i = 0; i < offerte.size(); i++){
@@ -58,7 +59,8 @@ public class Oggetto {
         }
         return report;
     }
-
+    
+    //metodo che crea uno storico di offerta e lo salva nel caso sia un'offerta valida    (verificato da altra parte)
     public void setOfferte(String nome, int offerta) {
         Offerta off = new Offerta(nome, offerta);
         this.offerte.add(off);

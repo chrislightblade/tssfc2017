@@ -19,7 +19,6 @@ public class Casa_aste {
     private TavolateAste oggettiAllAsta;
 
     public Casa_aste() {
-
         oggettiAllAsta = new TavolateAste();
         articoli = new ArrayList<String>();
         persone = new ArrayList<Persona>();
@@ -35,7 +34,8 @@ public class Casa_aste {
         }
     }
 
-    public String getPersone() {//ottengo una stringa con le persone iscritte all'asta
+    //ottengo una stringa con le persone iscritte all'asta
+    public String getPersone() {
         String report = "Le seguenti persone sono iscritte all'asta\n";
         for (int i = 0; i < persone.size(); i++) {
             report += persone.get(i).getNumero() + "° " + persone.get(i).getNome() + "\n";
@@ -43,10 +43,12 @@ public class Casa_aste {
         return report;
     }
 
-    public void setPersone(Persona personaNuova) {//funzione per aggiungere una persona alle aste passando un oggetto persona
+    //funzione per aggiungere una persona alle aste passando un oggetto persona
+    public void setPersone(Persona personaNuova) {
         this.persone.add(personaNuova);
     }
 
+    //stampa in string gli oggeti messi all'asta
     public String getOggettiAllAsta() {
         String report = "I seguenti oggetti sono all'asta:\n";
         for (int i = 0; i < oggettiAllAsta.getSizeOggettiAllAsta(); i++) {
@@ -55,7 +57,8 @@ public class Casa_aste {
         return report;
     }
 
-    public String getNomeOggettiAllAsta() {//in output l'elenco degli oggetti all'asta
+    //in output l'elenco degli oggetti all'asta
+    public String getNomeOggettiAllAsta() {
         String report = "I seguenti oggetti sono all'asta:\n";
         for (int i = 0; i < oggettiAllAsta.getSizeOggettiAllAsta(); i++) {
             report += (i + 1) + "°: " + oggettiAllAsta.getNomeOggetto(i) + "\n";
@@ -63,7 +66,8 @@ public class Casa_aste {
         return report;
     }
 
-    public void setOggettiAllAsta() {//stampa in output gli oggetti all'asta e consente di inserirne di nuovi
+    //stampa in output gli oggetti all'asta e consente di inserirne di nuovi
+    public void setOggettiAllAsta() {
         String report = "I seguenti oggetti sono all'asta:\n";
         for (int i = 0; i < oggettiAllAsta.getSizeOggettiAllAsta(); i++) {
             report += oggettiAllAsta.getNomeOggetto(i) + " valore d'asta: " + oggettiAllAsta.getMaggioreOfferente(i) + "\n";
@@ -91,8 +95,10 @@ public class Casa_aste {
         oggettiAllAsta.addOggetto(oggetto);
     }
 
-    public boolean faiOfferta() {//asta in cui tutti gli oggetti sono espostii e la singola persona può effettuare una offerta 
-        int input = 0;           //il battitore ha diversi poteri, tra cui aggiungere oggetti, aggiungere persone, chiudere l'asta 
+    //asta in cui tutti gli oggetti sono espostii e la singola persona può effettuare una offerta 
+    //il battitore ha diversi poteri, tra cui aggiungere oggetti, aggiungere persone, chiudere l'asta 
+    public boolean faiOfferta() {
+        int input = 0;           
         boolean verifica = false;
         while (verifica == false) {
             input = 0;

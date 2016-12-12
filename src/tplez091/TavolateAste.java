@@ -30,7 +30,11 @@ public class TavolateAste {
     public String getMaggioreOfferente(int index) {//oggettiAllAsta.getMaggioreOfferente(i)
         return oggettiAllAsta.get(index).getMaggioreOfferente();
     }
-
+    
+    public void setMaggioreOfferente(int index, String maggioreOfferente) {//oggettiAllAsta.setMaggioreOfferente(int index, String maggioreOfferente)
+        oggettiAllAsta.get(index).setMaggioreOfferente(maggioreOfferente);
+    }
+    
     public int getOfferta(int index) {//oggettiAllAsta.getOfferta(i)
         return oggettiAllAsta.get(index).getOfferta();
     }
@@ -43,9 +47,7 @@ public class TavolateAste {
         return oggettiAllAsta.get(index);
     }
     
-    public void setMaggioreOfferente(int index, String maggioreOfferente) {//oggettiAllAsta.setMaggioreOfferente(int index, String maggioreOfferente)
-        oggettiAllAsta.get(index).setMaggioreOfferente(maggioreOfferente);
-    }
+    
     
     public void setOfferta(int index, int offerta) {//oggettiAllAsta.setOfferta(int index, int offerta)
         oggettiAllAsta.get(index).setOfferta(offerta);
