@@ -16,8 +16,5 @@ public class Bibliotecaria extends Persona{
     public Bibliotecaria(String nome) {
         super(nome);
         this.registro = new Registro();
-    }
-    
-    
-    
+    } 
 }

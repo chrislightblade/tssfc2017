@@ -31,9 +31,9 @@ public class Biblioteca {
         this.indiceBiblioteca = indiceBiblioteca;
     }
 
-    public ArrayList<Persona> getRegistrati() {
+    /*public ArrayList<Persona> getRegistrati() {
         return elencoClienti;
-    }
+    }*/
 
     public void setRegistrati(ArrayList<Persona> registrati) {
         this.elencoClienti = registrati;

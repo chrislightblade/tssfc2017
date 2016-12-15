@@ -19,10 +19,15 @@ public class Libro {
     private String codiceLibro;
     //private ArrayList<Talloncino> prestatoA;
 
-    public Libro(String titolo, String codiceLibro/*, ArrayList<Talloncino> prestatoA*/) {
+    public Libro(String titolo, String codiceLibro, String autore/*, ArrayList<Talloncino> prestatoA*/) {
         this.titolo = titolo;
+        this.autore = autore;
         this.codiceLibro = codiceLibro;        
         //this.prestatoA = prestatoA;
+    }
+
+    public String getAutore() {
+        return autore;
     }
 
     public String getTitolo() {
