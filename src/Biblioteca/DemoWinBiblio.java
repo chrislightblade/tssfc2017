@@ -7,6 +7,7 @@ package Biblioteca;
 
 import java.util.Date;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -202,7 +203,7 @@ public class DemoWinBiblio extends javax.swing.JFrame {
         });
         jScrollPane4.setViewportView(jPrestiti);
 
-        jBCreaPrestito.setText("Crea Prestito");
+        jBCreaPrestito.setText("Crea Prestitoooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo");
         jBCreaPrestito.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBCreaPrestitoActionPerformed(evt);
@@ -331,8 +332,12 @@ public class DemoWinBiblio extends javax.swing.JFrame {
         int indexCliente = jClienti.getSelectedIndex();
         int codCliente = bib.getElencoclienti().get(indexCliente).getCodCliente();
         int indexLibro = jLibri.getSelectedIndex();
-        int codLibro = bib.getElencolibri().get(indexLibro).getCodLibro() ;        
+        int codLibro = bib.getElencolibri().get(indexLibro).getCodLibro() ;    
+        if(bib.isDisponibile(codLibro)){
         jLMsgPrestito.setText(dip.aggNewPrestito(codCliente, codLibro, bib, jClienti.getSelectedValue() + " - " + jLibri.getSelectedValue()));
+        } else {
+            JOptionPane.showMessageDialog(null, "Il libro non è disponibile");
+        }
         refreshPrestiti();
         
     }//GEN-LAST:event_jBCreaPrestitoActionPerformed

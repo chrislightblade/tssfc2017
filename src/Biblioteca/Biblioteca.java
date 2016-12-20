@@ -28,8 +28,6 @@ public class Biblioteca {
     public ArrayList<Prestito> getElencoprestiti() {
         return elencoprestiti;
     }
-
-    
     
     public String getRagioneSociale() {
         return ragioneSociale;
@@ -76,4 +74,29 @@ public class Biblioteca {
         return report;
     }
 
+    public String trovaLibriNonRestituiti(){
+        String fuori = "Nessun libro in prestito.\n";
+        for (int i = 0; i < elencoprestiti.size(); i++) {
+            if(!elencoprestiti.get(i).reso){
+                if(elencoprestiti.get(i).getDataRestituzione() == null){
+                    fuori = elencoprestiti.get(i).getCodLibro() + " è stato preso in prestito da " + elencoprestiti.get(i).getCodCliente() + " in data " + elencoprestiti.get(i).getDataPrestito() + "e non è stato ancora restituito.\n";
+                } else {
+                    fuori = elencoprestiti.get(i).getCodLibro() + " è stato preso in prestito da " + elencoprestiti.get(i).getCodCliente() + " e non è stato ancora restituito.\nVi è una data con scritto: " + elencoprestiti.get(i).getDataRestituzione();
+                }
+            }
+        }
+        return fuori;
+    }
+    
+    public boolean isDisponibile(int codlibro){
+        boolean ok = true;
+        for (Prestito p : elencoprestiti) {
+            if(p.getCodLibro() == codlibro && p.getDataRestituzione() == null){
+                ok = false;
+                break;
+            }
+        }
+        return ok;
+    }
+    
 }
