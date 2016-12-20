@@ -32,11 +32,13 @@ public class DemoBiblioteca {
         Libro l1= new Libro(1, "Il signore degli anelli", "Tolkien");
         Libro l2= new Libro(2, "Lo Hobbit", "Tolkien");
         Libro l3= new Libro(3, "Il signore degli agnelli", "Tolkren");
-        Libro l4= new Libro(4, "Il signore degli bordelli", "Sasha Grey");
+        //Libro l5= new Libro(5, "Il signore degli bordelli", "Sasha Grey");
+        Libro l4= new Libro(4, "Domani taglio", "Luca Pastore");
         bib.aggLibro(l1);
         bib.aggLibro(l2);
         bib.aggLibro(l3);
         bib.aggLibro(l4);
+        //bib.aggLibro(l5);
         Prestito p1 = new Prestito(1, 1, "ciao");
         
         //JOptionPane.showMessageDialog(null,"Elenco libri\n"+bib.stampaLibri());        

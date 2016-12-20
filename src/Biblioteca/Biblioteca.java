@@ -19,6 +19,7 @@ public class Biblioteca {
     private ArrayList<Dipendente> elencodipendenti = new ArrayList<Dipendente>();
     private ArrayList<Cliente> elencoclienti = new ArrayList<Cliente>();
     private ArrayList<Prestito> elencoprestiti = new ArrayList<Prestito>();
+    private int numeroPrestitiMax = 3;
 
     public Biblioteca(String ragioneSociale, String indirizzo) {
         this.ragioneSociale = ragioneSociale;
@@ -28,7 +29,7 @@ public class Biblioteca {
     public ArrayList<Prestito> getElencoprestiti() {
         return elencoprestiti;
     }
-    
+
     public String getRagioneSociale() {
         return ragioneSociale;
     }
@@ -52,7 +53,7 @@ public class Biblioteca {
     public void aggLibro(Libro l) {
         elencolibri.add(l);
     }
-    
+
     public void aggPrestito(Prestito prestito) {
         elencoprestiti.add(prestito);
     }
@@ -68,17 +69,17 @@ public class Biblioteca {
     public String stampaLibri() {
         String report = "";
         for (int i = 0; i < elencolibri.size(); i++) {
-            Libro l=elencolibri.get(i);
+            Libro l = elencolibri.get(i);
             report += l.getCodLibro() + "#" + " " + l.getTitolo() + " - " + l.getAutore() + "\n";
         }
         return report;
     }
 
-    public String trovaLibriNonRestituiti(){
+    public String trovaLibriNonRestituiti() {
         String fuori = "Nessun libro in prestito.\n";
         for (int i = 0; i < elencoprestiti.size(); i++) {
-            if(!elencoprestiti.get(i).reso){
-                if(elencoprestiti.get(i).getDataRestituzione() == null){
+            if (!elencoprestiti.get(i).reso) {
+                if (elencoprestiti.get(i).getDataRestituzione() == null) {
                     fuori = elencoprestiti.get(i).getCodLibro() + " è stato preso in prestito da " + elencoprestiti.get(i).getCodCliente() + " in data " + elencoprestiti.get(i).getDataPrestito() + "e non è stato ancora restituito.\n";
                 } else {
                     fuori = elencoprestiti.get(i).getCodLibro() + " è stato preso in prestito da " + elencoprestiti.get(i).getCodCliente() + " e non è stato ancora restituito.\nVi è una data con scritto: " + elencoprestiti.get(i).getDataRestituzione();
@@ -87,16 +88,48 @@ public class Biblioteca {
         }
         return fuori;
     }
-    
-    public boolean isDisponibile(int codlibro){
+
+    public boolean isDisponibile(int codlibro) {
         boolean ok = true;
         for (Prestito p : elencoprestiti) {
-            if(p.getCodLibro() == codlibro && p.getDataRestituzione() == null){
+            if (p.getCodLibro() == codlibro && p.getDataRestituzione() == null) {
                 ok = false;
                 break;
             }
         }
         return ok;
     }
+
+    public boolean isClienteMoroso(int codCliente) {
+        boolean ok = true;
+        int conta = 0;
+        for (Prestito p : elencoprestiti) {
+            if (p.getCodCliente() == codCliente && p.getDataRestituzione() == null) {
+                conta++;
+                if (conta >= numeroPrestitiMax) {
+                    ok = false; 
+                    break;
+                }
+            }
+        }
+        return ok;
+    }
     
+    public String eliminaPrestito(int index, Biblioteca b){
+        String frase = "Non riuscito.";
+        if(index < b.getElencoprestiti().size() && index >= 0){
+            b.getElencoprestiti().remove(index);
+            frase = "Rimozione riuscita";
+        }
+        return frase;        
+    }
+    
+    public String eliminaPrestito(Prestito prestito){
+        String frase = "Non riuscito.";
+        
+            if(getElencoprestiti().remove(prestito))
+            frase = "Rimozione riuscita";
+        
+        return frase;        
+    }
 }

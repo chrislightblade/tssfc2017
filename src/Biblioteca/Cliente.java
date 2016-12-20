@@ -15,12 +15,11 @@ import java.util.Date;
 public class Cliente extends Persona{
            
     private int codCliente;
-    private int numeroPrestiti;
+    
 
     public Cliente(int codCliente, String nome, String cognome) {
         super(nome, cognome);
-        this.codCliente = codCliente;
-        this.numeroPrestiti = 0;
+        this.codCliente = codCliente;        
     }
 
     public int getCodCliente() {
@@ -32,13 +31,6 @@ public class Cliente extends Persona{
         msg = getCodCliente()+ "#: " + getNome()+ " - " + getCognome();
         return msg;
     }
-
-    public int getNumeroPrestiti() {
-        return numeroPrestiti;
-    }
-
-    public void setNumeroPrestiti(int numeroPrestiti) {
-        this.numeroPrestiti = numeroPrestiti;
-    }   
+   
     
 }
