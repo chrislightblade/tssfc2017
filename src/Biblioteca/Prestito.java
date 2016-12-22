@@ -18,6 +18,7 @@ public class Prestito {
     private String dataRestituzione;
     boolean reso = false;
     String note;
+    private int numeroPrestito;
 
     public Prestito(int codCliente, int codLibro, String note) {
         this.codCliente = codCliente;
@@ -69,6 +70,14 @@ public class Prestito {
 
     public void setDataRestituzione(String dataconse) {
         this.dataRestituzione = dataconse;
+    }
+
+    public int getNumeroPrestito() {
+        return numeroPrestito;
+    }
+
+    public void setNumeroPrestito(int numeroPrestito) {
+        this.numeroPrestito = numeroPrestito;
     }
     
     

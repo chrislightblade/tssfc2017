@@ -115,21 +115,5 @@ public class Biblioteca {
         return ok;
     }
     
-    public String eliminaPrestito(int index, Biblioteca b){
-        String frase = "Non riuscito.";
-        if(index < b.getElencoprestiti().size() && index >= 0){
-            b.getElencoprestiti().remove(index);
-            frase = "Rimozione riuscita";
-        }
-        return frase;        
-    }
     
-    public String eliminaPrestito(Prestito prestito){
-        String frase = "Non riuscito.";
-        
-            if(getElencoprestiti().remove(prestito))
-            frase = "Rimozione riuscita";
-        
-        return frase;        
-    }
 }

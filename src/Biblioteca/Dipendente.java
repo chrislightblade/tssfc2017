@@ -65,7 +65,7 @@ public class Dipendente extends Persona{
         return msg;
     }
     
-    public String aggNewPrestito(int codCliente, int codLibro, Biblioteca b) {
+    /*public String aggNewPrestito(int codCliente, int codLibro, Biblioteca b) {
         
         String msg = "Non posso inserire il prestito.";
         if(codCliente < 0 && codLibro < 0){
@@ -74,20 +74,50 @@ public class Dipendente extends Persona{
         //String note = JOptionPane.showInputDialog("inserire nota");
         Prestito p1= new Prestito(codCliente, codLibro, "Prestito del " + DateFunction.converti(new Date()));
         b.aggPrestito(p1);
-        msg = "Aggiunto prestito: codCliente " + codCliente + " - codLibro " + codLibro;
+        msg = "Aggiunto prestito: codCliente " + codCliente + " - codLibro " + codLibro;        
         return msg;
-    }
+    }*/
     
-    public String aggNewPrestito(int codCliente, int codLibro, Biblioteca b, String note) {
+    public String aggNewPrestito(int codCliente, int codLibro, String note, Biblioteca bib) {
         
         String msg = "Non posso inserire il prestito.";
         if(codCliente < 0 && codLibro < 0){
             return msg;
         }
         //String note = JOptionPane.showInputDialog("inserire nota");
-        Prestito p1= new Prestito(codCliente, codLibro, note + " Prestito del " + DateFunction.converti(new Date()));
+        Prestito p1= new Prestito(codCliente, codLibro,"[" + (bib.getElencoprestiti().size()+1) + "]" + "Prestito numero: " + (bib.getElencoprestiti().size()+1) + " - " + note + " Prestito del " + DateFunction.converti(new Date()));
         b.aggPrestito(p1);
+        p1.setNumeroPrestito(b.getElencoprestiti().size());
         msg = "Aggiunto prestito: codCliente " + codCliente + " - codLibro " + codLibro;
         return msg;
+    }
+    
+    public String aggNewCliente(String nome, String cognome, Biblioteca b) {
+        
+        String msg = "Non posso inserire il cliente.";
+        
+        //String note = JOptionPane.showInputDialog("inserire nota");
+        Cliente c= new Cliente(b.getElencoclienti().size() -1, nome ,cognome);
+        b.aggCliente(c);        
+        msg = "Aggiunto";
+        return msg;
+    }
+    
+    public String eliminaPrestito(int index, Biblioteca b){
+        String frase = "Non riuscito.";
+        if(index < b.getElencoprestiti().size() && index >= 0){
+            b.getElencoprestiti().remove(index);
+            frase = "Rimozione riuscita";
+        }
+        return frase;        
+    }
+    
+    public String eliminaPrestito(Prestito prestito, Biblioteca b){        
+        
+        String frase = "Non riuscito.";        
+            prestito.setDataRestituzione(DateFunction.converti(new Date()));
+            frase = "Rimozione riuscita";
+        
+        return frase;        
     }
 }
